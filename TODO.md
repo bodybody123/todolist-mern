@@ -3,5 +3,9 @@ Stuff that must get done
 Operation to do
     - [x] Create
     - [x] Read
-    - [] Update
-    - [] Delete
+    - [X] Update
+    - [X] Delete
+
+Functionality
+    - [] Client
+    - [x] Server

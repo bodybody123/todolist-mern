@@ -13,7 +13,7 @@ export default class TodoListController {
     }
 
     /**
-     * * Controll Request for Read for all
+     * * Control Request for Read for all
      */
     static async apiGetTodoList(req, res) {
         let response = {};
@@ -25,6 +25,9 @@ export default class TodoListController {
         res.json(response);
     }
 
+    /**
+     * * Control Create request
+     */
     static async apiPostTodoList(req, res) {
         try {
             const title = req.body.title;
@@ -44,6 +47,59 @@ export default class TodoListController {
             res.json({ status: 'success' });
         } catch (e) {
             console.error(e);
+            res.status(500).json({ error: e.message });
+        }
+    }
+
+    /**
+     * * Control Update request
+     */
+    static async apiUpdateTodoList(req, res) {
+        try {
+            const todoId = req.body.todo_id;
+            const title = req.body.title;
+            const text = req.body.text;
+            const date = new Date();
+
+            const reviewResponse = await TodoListDAO.updateTodo(
+                todoId,
+                title, 
+                text, 
+                date,
+                req.body.user_id
+            );
+
+            var { error } = reviewResponse;
+            if(error){
+                res.status(400).json({ error });
+            }
+
+            if (reviewResponse.modifiedCount === 0) {
+                throw new Error(
+                  "unable to update review - user may not be original poster",
+                )
+            }
+
+            res.json({ status: 'success' });
+        } catch (e) {
+            console.error(e);
+            res.status(500).json({ error: e.message });
+        }
+    }
+
+    static async apiDeleteTodoList(req, res) {
+        try{
+            const todoId = req.query.id;
+            const userId = req.body.user_id;
+            console.log(todoId);
+
+            const deleteResponse = await TodoListDAO.deleteTodo(
+                todoId,
+                userId
+            )
+            res.json({ status: 'success' });
+        }
+        catch(e){
             res.status(500).json({ error: e.message });
         }
     }

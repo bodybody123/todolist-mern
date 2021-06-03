@@ -1,3 +1,6 @@
+import mongodb from 'mongodb';
+const ObjectId = mongodb.ObjectID;
+
 let todo;
 
 /**
@@ -41,6 +44,9 @@ export default class TodolistDao {
         }
     }
 
+    /**
+     * * Handle Create
+     */
     static async addTodo(title, text, date, user){
         try {
             const todoDoc = {
@@ -56,14 +62,34 @@ export default class TodolistDao {
             return { error: e };
         }
     }
-    // static async updateTodo() {
-    //     try {
-    //         const updateResponse = await todo.updateOne(
-    //             {}
-    //         );
-    //     } catch (e) {
-    //         console.error(`Unable to update what todo: ${e}`);
-    //         return { error: e }
-    //     }
-    // }
+    /**
+     * * Handle Update
+     */
+    static async updateTodo(todoId, title, text, date, userId) {
+        try {
+            const updateResponse = await todo.updateOne(
+                { user_id: userId, _id: ObjectId(todoId) },
+                { $set: { title: title, text: text, date: date } }
+            );
+
+            return updateResponse;
+        } catch (e) {
+            console.error(`Unable to update what todo: ${e}`);
+            return { error: e }
+        }
+    }
+
+    static async deleteTodo(todoId, userId){
+        try{
+            const deleteResponse = await todo.deleteOne({
+                _id: ObjectId(todoId),
+                user_id: userId,
+            })
+
+            return deleteResponse;
+        }catch (e) {
+            console.error(`Unable to delete what todo: ${e}`);
+            return { error: e }
+        }
+    }
 }

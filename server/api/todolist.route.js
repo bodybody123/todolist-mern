@@ -8,7 +8,7 @@ router.route('/').get(TodoListCtrl.apiGetTodoList);
 router
     .route('/todo')
     .post(TodoListCtrl.apiPostTodoList)
-//     .put()
-//     .delete();
+    .put(TodoListCtrl.apiUpdateTodoList)
+    .delete(TodoListCtrl.apiDeleteTodoList);
 
 export default router;
