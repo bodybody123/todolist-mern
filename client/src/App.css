@@ -1,0 +1,91 @@
+*{
+  border: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Roboto:wght@400;500;700;900&display=swap');
+
+:root{
+  /* Background */
+  --bg: #FBFBF8;
+
+  /* Note Colours */
+  --red: #AB3836;
+  --blue: #33658A;
+  --peach: #f88c8c;
+  --green: #BDDD97;
+  --yellow: #DCDD97;
+
+  /* Primary */
+  --p100: #BDDD97;
+  --p200: #88B454;
+  --p500: #759F2B;
+  --p600: #4D6F20;
+  --p800: #3B560B;
+
+  /* Secondary */
+  --s100: #DCDD97;
+  --s200: #D0D266;
+  --s500: #E1EF3C;
+  --s600: #BABD13;
+  --s800: #6A730B;
+
+  /* Shades */
+  --sh01: #E3E8EA;
+  --sh02: #BCCAD0;
+  --sh03: #9BA8AE;
+  --sh04: #707A7E;
+  --sh05: #495054;
+
+  /* shadow dps */
+  --dp01: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 3px rgba(0, 0, 0, 0.2);
+  --dp04: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+  --dp06: 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12), 0px 3px 5px rgba(0, 0, 0, 0.2);
+  --dp08: 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2);
+  --dp24: 0px 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
+}
+#root {
+  max-width: 1333px;
+  margin: 0 auto;
+}
+.app{
+  margin: 0 15px;
+}
+
+h4{
+  font-variant: normal;
+  font-weight: 500;
+  font-size: 2.125rem;
+  font-family: 'Roboto', sans-serif;
+  color: var(--sh05);
+}
+h5{
+  font-variant: normal;
+  font-weight:  700;
+  font-size: 1.25rem; 
+  font-family: 'Roboto', sans-serif;
+  color: var(--sh05);
+}
+body{
+  background: var(--bg);
+  font-variant: normal;
+  font-weight: 400;
+  font-size: 0.9rem;
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--sh05);
+  line-height: 1.25;
+
+  box-sizing: border-box;
+}
+
+.dp01{
+  box-shadow: var(--dp01);
+}
+.dp04{
+  box-shadow: var(--dp04);
+}
+.dp06{
+  box-shadow: var(--dp06);
+}
+.dp24{
+  box-shadow: var(--dp24);
+}

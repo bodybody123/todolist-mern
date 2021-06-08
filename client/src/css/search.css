@@ -1,0 +1,43 @@
+.search-box {
+	box-shadow: var(--dp01);
+	display: flex;
+	flex-direction: row;
+	padding: 0 2.25em;
+	margin-bottom: 1.25em;
+	border-radius: 22px;
+	height: 44px;
+    align-items: center;
+    justify-content: center;
+}
+.input_group {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+    margin-left: 1.25em;
+}
+input, button, select, textarea{
+    margin: 0;
+    padding: 0;
+}
+.input__box{
+    background: inherit;
+    flex-grow: 1;
+}
+.input__box:focus{
+    outline: none;
+}
+.btn{
+    background: none;
+}
+.btn:active{
+    background: rgba(0,0,0,0.1);
+}
+
+@media only screen and (max-width:360px){
+    .search-box{
+        padding: 0;
+    }
+    .input_group{
+        flex-grow: 0;
+    }
+}

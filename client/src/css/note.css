@@ -1,0 +1,40 @@
+.note {
+    padding: 1em;
+	margin-bottom: 2em;
+
+	display: flex;
+	flex-direction: row;
+	justify-self: stretch;
+    
+	max-width: 72ch;
+	border-radius: 12px;
+	box-shadow: var(--dp04);
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+.note_text{
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+/* icon-action */
+.ico_action {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.ico{
+    width: 24px;
+    height: 24px;
+}
+.ico__delete, .ico__edit, .ico__more{
+    margin: 0 12px;
+}
+.ico__delete, .ico__edit, .ico__more:hover{
+    cursor: pointer;
+}
+.delete__svg:hover{
+    fill: #f00;
+}
+.edit__svg:hover{
+    fill: #ff0;
+}

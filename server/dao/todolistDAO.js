@@ -44,16 +44,33 @@ export default class TodolistDao {
         }
     }
 
+    static async getTodoById(id){
+        let cursor;
+
+        try {
+            cursor = await todo.find({ _id: new ObjectId(id)});
+        } catch(e) {
+            console.error(`Unable to issue command ${e}`);
+            return;
+        }
+
+        const displayCursor = cursor;
+
+        try{
+            return displayCursor.toArray();
+        }catch(e) {
+            console.error(`Unable to convert cursor to array, ${e}`);
+        }
+    }
+
     /**
      * * Handle Create
      */
-    static async addTodo(title, text, date, user){
+    static async addTodo(text, date){
         try {
             const todoDoc = {
-                title: title,
                 text: text,
                 date: date,
-                user_id: user._id,
             };
 
             return await todo.insertOne(todoDoc);
@@ -65,11 +82,11 @@ export default class TodolistDao {
     /**
      * * Handle Update
      */
-    static async updateTodo(todoId, title, text, date, userId) {
+    static async updateTodo(todoId, text, date) {
         try {
             const updateResponse = await todo.updateOne(
-                { user_id: userId, _id: ObjectId(todoId) },
-                { $set: { title: title, text: text, date: date } }
+                { _id: ObjectId(todoId) },
+                { $set: { text: text, date: date } }
             );
 
             return updateResponse;
@@ -79,11 +96,10 @@ export default class TodolistDao {
         }
     }
 
-    static async deleteTodo(todoId, userId){
+    static async deleteTodo(todoId){
         try{
             const deleteResponse = await todo.deleteOne({
                 _id: ObjectId(todoId),
-                user_id: userId,
             })
 
             return deleteResponse;

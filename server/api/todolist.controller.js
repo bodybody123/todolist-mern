@@ -4,7 +4,7 @@ import TodoListDAO from '../dao/todolistDAO.js';
  * * This Files controlls the Request from the client to the server
  * 
  * ! ERROR tracker
- * 
+ * ! Unable to update
  */
 
 export default class TodoListController {
@@ -25,24 +25,31 @@ export default class TodoListController {
         res.json(response);
     }
 
+    static async apiGetTodoListById(req, res) {
+        try{
+            let id = req.params.id || {};
+            let todoList = await TodoListDAO.getTodoById(id);
+            if(!todoList){
+                res.status(404).json({ error: 'ctrl not found' });
+                return;
+            }
+            res.json(todoList);
+        } catch (e) {
+            console.log(`api, ${e}`)
+            res.status(500).json({ error: e })
+      }  
+    }
     /**
      * * Control Create request
      */
     static async apiPostTodoList(req, res) {
         try {
-            const title = req.body.title;
             const text = req.body.text;
-            const userInfo = {
-                name: req.body.name,
-                _id: req.body.user_id,
-            }
             const date = new Date();
 
             const todoResponses = await TodoListDAO.addTodo(
-                title,
                 text,
-                date,
-                userInfo
+                date
             );
             res.json({ status: 'success' });
         } catch (e) {
@@ -56,27 +63,25 @@ export default class TodoListController {
      */
     static async apiUpdateTodoList(req, res) {
         try {
-            const todoId = req.body.todo_id;
-            const title = req.body.title;
+            const todoId = req.body.id;
             const text = req.body.text;
             const date = new Date();
 
-            const reviewResponse = await TodoListDAO.updateTodo(
+            const todoResponse = await TodoListDAO.updateTodo(
                 todoId,
-                title, 
                 text, 
-                date,
-                req.body.user_id
+                date
             );
-
-            var { error } = reviewResponse;
+            
+            console.log(`${req}`);
+            var { error } = todoResponse;
             if(error){
                 res.status(400).json({ error });
             }
 
-            if (reviewResponse.modifiedCount === 0) {
+            if (todoResponse.modifiedCount === 0) {
                 throw new Error(
-                  "unable to update review - user may not be original poster",
+                  "unable to update todo - user may not be original poster",
                 )
             }
 
@@ -90,12 +95,10 @@ export default class TodoListController {
     static async apiDeleteTodoList(req, res) {
         try{
             const todoId = req.query.id;
-            const userId = req.body.user_id;
             console.log(todoId);
 
             const deleteResponse = await TodoListDAO.deleteTodo(
                 todoId,
-                userId
             )
             res.json({ status: 'success' });
         }
