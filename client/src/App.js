@@ -1,7 +1,7 @@
 import Notes from './components/note';
 import NotesList from './components/notes-list';
 import Search from './components/search';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 import './master.css';
 import Create from './components/create';
@@ -11,7 +11,9 @@ function App() {
     <div className="app">
       <header
         className="header">
-        <h4>TODO</h4>
+        <Link to="/">
+          <h4>TODO</h4>
+        </Link>
       </header>
       <main>
         <Switch>

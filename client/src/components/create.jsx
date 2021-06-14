@@ -32,8 +32,17 @@ export default function Create(props) {
     return (        
         <div>
             <h6>Create</h6>
-            <div className="search-box">
-                <div className="input_group">
+            <div className="input_group">
+                <div className="search-box">
+                    <label for="image">image: </label>
+                    <input 
+                        id="image" 
+                        type="file" 
+                        name="image"/>
+                </div>
+            </div>
+            <div className="input_group">
+                <div className="search-box">
                     <input
                         className="input__box"
                         type="text"

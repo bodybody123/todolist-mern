@@ -43,6 +43,17 @@
   --dp08: 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2);
   --dp24: 0px 24px 38px rgba(0, 0, 0, 0.14), 0px 9px 46px rgba(0, 0, 0, 0.12), 0px 11px 15px rgba(0, 0, 0, 0.2);
 }
+body{
+  background: var(--bg);
+  font-variant: normal;
+  font-weight: 400;
+  font-size: 0.9rem;
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--sh05);
+  line-height: 1.25;
+
+  box-sizing: border-box;
+}
 #root {
   max-width: 1333px;
   margin: 0 auto;
@@ -65,18 +76,9 @@ h5{
   font-family: 'Roboto', sans-serif;
   color: var(--sh05);
 }
-body{
-  background: var(--bg);
-  font-variant: normal;
-  font-weight: 400;
-  font-size: 0.9rem;
-  font-family: 'Noto Sans', sans-serif;
-  color: var(--sh05);
-  line-height: 1.25;
-
-  box-sizing: border-box;
+a {
+  text-decoration: none;
 }
-
 .dp01{
   box-shadow: var(--dp01);
 }

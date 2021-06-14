@@ -7,11 +7,10 @@
 	border-radius: 22px;
 	height: 44px;
     align-items: center;
-    justify-content: center;
 }
 .input_group {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-grow: 1;
     margin-left: 1.25em;
 }
