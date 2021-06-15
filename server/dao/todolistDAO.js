@@ -66,11 +66,12 @@ export default class TodolistDao {
     /**
      * * Handle Create
      */
-    static async addTodo(text, date){
+    static async addTodo(text, file, date){
         try {
             const todoDoc = {
                 text: text,
-                date: date,
+                file: file,
+                date: date
             };
 
             return await todo.insertOne(todoDoc);
@@ -82,11 +83,11 @@ export default class TodolistDao {
     /**
      * * Handle Update
      */
-    static async updateTodo(todoId, text, date) {
+    static async updateTodo(todoId, text, file, date) {
         try {
             const updateResponse = await todo.updateOne(
                 { _id: ObjectId(todoId) },
-                { $set: { text: text, date: date } }
+                { $set: { text: text, file: file, date: date } }
             );
 
             return updateResponse;

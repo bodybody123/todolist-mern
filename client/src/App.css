@@ -79,6 +79,9 @@ h5{
 a {
   text-decoration: none;
 }
+input, button {
+  color: var(--sh05);
+}
 .dp01{
   box-shadow: var(--dp01);
 }

@@ -9,8 +9,8 @@ class TodoDataService {
         return http.get(`/id/${id}`);
     }
 
-    createTodo(data){
-        return http.post('/todo', data);
+    createTodo(data, config){
+        return http.post('/todo', data, config);
     }
     updateTodo(data){
         return http.put('/todo', data);

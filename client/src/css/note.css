@@ -29,7 +29,7 @@
 .ico__delete, .ico__edit, .ico__more{
     margin: 0 12px;
 }
-.ico__delete, .ico__edit, .ico__more:hover{
+.ico__delete, .ico__edit:hover{
     cursor: pointer;
 }
 .delete__svg:hover{

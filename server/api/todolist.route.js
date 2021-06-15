@@ -1,15 +1,13 @@
 import express from 'express';
 import TodoListCtrl from './todolist.controller.js';
 
-const router = express.Router();
+const app = express();
 
-router.route('/').get(TodoListCtrl.apiGetTodoList);
-router.route("/id/:id").get(TodoListCtrl.apiGetTodoListById);
+app.get('/', TodoListCtrl.apiGetTodoList);
+app.get("/id/:id", TodoListCtrl.apiGetTodoListById);
 
-router
-    .route('/todo')
-    .post(TodoListCtrl.apiPostTodoList)
-    .put(TodoListCtrl.apiUpdateTodoList)
-    .delete(TodoListCtrl.apiDeleteTodoList);
+app.post('/todo', TodoListCtrl.apiPostTodoList)
+app.put('/todo', TodoListCtrl.apiUpdateTodoList);
+app.delete('/todo',TodoListCtrl.apiDeleteTodoList);
 
-export default router;
+export default app;
