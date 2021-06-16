@@ -1,5 +1,6 @@
 import TodoListDAO from '../dao/todolistDAO.js';
 import multer from 'multer';
+import {__dirname} from '../server.js';
 
 /**
  * * This Files controlls the Request from the client to the server
@@ -7,6 +8,7 @@ import multer from 'multer';
  * ! ERROR tracker
  * ! Unable to update
  */
+
 
  const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -45,7 +47,30 @@ export default class TodoListController {
         res.json(response);
     }
 
+    static async apiGetImages(req, res, next) {
+        try {
+            let id = req.params.id || {};
+            let img = await TodoListDAO.getTodoById(id);
+            if(!img) {
+                res.status(404).json({ error: 'ctrl not found' });
+                return;
+            }
+
+            let imageResult = img[0].file;
+            res.sendFile(__dirname + '/uploads/' + imageResult, (e) => {
+                if (e) {
+                    next(e);
+                } else {
+                    console.log('sent ' + imageResult);
+                }
+            });
+        } catch (e) {
+            console.log(`${e} ${__dirname}/uploads/`)
+            res.status(500).json({ error: e })
+        }
+    }
     static async apiGetTodoListById(req, res) {
+
         try{
             let id = req.params.id || {};
             let todoList = await TodoListDAO.getTodoById(id);

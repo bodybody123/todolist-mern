@@ -37,6 +37,7 @@ export default function NotesList(props) {
                 return(
                     todo ? (
                     <div key={index} className="note">
+                        <img src={`http://localhost:5000/api/v1/todolist/id/${todo._id}/img`} />
                         <div className="note_text">
                             {todo.text}
                         </div>

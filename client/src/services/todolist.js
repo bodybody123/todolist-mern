@@ -8,6 +8,9 @@ class TodoDataService {
     get(id) {
         return http.get(`/id/${id}`);
     }
+    getImg(id) {
+        return http.get(`id/${id}/img`);
+    }
 
     createTodo(data, config){
         return http.post('/todo', data, config);
